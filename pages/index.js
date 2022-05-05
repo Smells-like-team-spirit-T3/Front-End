@@ -1,5 +1,9 @@
 import Head from 'next/head'
 
+import WeekCalendar from 'react-week-calendar';
+
+import 'react-week-calendar/dist/style.css';
+
 export default function Home() {
   return (
     <div className="container">
@@ -17,7 +21,11 @@ export default function Home() {
           This is the trip with code number <code>204539232</code>
         </p>
 
-        <div className="grid">
+        <div>
+          <WeekCalendar/>
+        </div>
+
+        {/* <div className="grid">
           <a href="https://nextjs.org/docs" className="card">
             <h3>See the whole plan &rarr;</h3>
             <p>You can find here the calendar of your trip</p>
@@ -27,9 +35,8 @@ export default function Home() {
             <h3>Memories &rarr;</h3>
             <p>Already went there! Let's see your photos.</p>
           </a>
+        </div> */}
 
-          
-        </div>
       </main>
 
       <footer>
@@ -123,6 +130,7 @@ export default function Home() {
 
           max-width: 800px;
           margin-top: 3rem;
+          margin-bottom: 3rem;
         }
 
         .card {
