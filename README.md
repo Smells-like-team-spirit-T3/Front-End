@@ -1,3 +1,3 @@
 # Front End
 
-Demonstration.
+First, run `npm install` and then `npm run dev`.
