@@ -1,9 +1,7 @@
 import Head from 'next/head'
-
-import WeekCalendar from 'react-week-calendar';
 import 'react-week-calendar/dist/style.css';
-
 import { globalBody, mainPageBody } from './style';
+import TripCalendar from './components/TripCalendar';
 
 export default function Home() {
   return (
@@ -22,9 +20,8 @@ export default function Home() {
           This is the trip with code number <code>204539232</code>
         </p>
 
-        <div>
-          <WeekCalendar/>
-        </div>
+        <TripCalendar/>
+
       </main>
 
       <footer>
