@@ -2,26 +2,11 @@ import WeekCalendar from 'react-week-calendar';
 import { mainPageBody, globalBody } from '../style';
 import React from 'react';
 import 'react-week-calendar/dist/style.css';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 export default function TripCalendar(props) {
-    const [isLoading, setLoading] = useState(true);
-    const [trip, setTrip] = useState([]);
 
-    useEffect(() => {
-        axios.get(`/trips/1`).then((response) => {
-            setTrip(response.data);
-            setLoading(false);
-        });
-    }, []);
-
-    if (isLoading) {
-        return (
-            <p>Loading...</p>
-        );
-    }
-
+    const trip = props.trip;
+    
     return (
         <div className='container'>
             <link rel="stylesheet/less" type="text/css" href="style.less" />
@@ -32,23 +17,32 @@ export default function TripCalendar(props) {
                 </h1>
 
                 <p className="description">
-                This is the trip with code number <code>{props.pid}</code>
+                This is the <code>{trip.title}</code> trip with code number <code>{trip.id}</code>.
                 </p>
 
                 <p>
-                    <ul>
-                    {
-                        trip.events.map(event =>
-                            <li key={event.id}>{event.title},  {event.startDate},  {event.endDate}</li>
-                            )
-                    }
-                    </ul>
+                start date: <code> {trip.startDate.slice(0,10)}</code>, 
+                end date: <code> {trip.endDate.slice(0,10)}</code>,
+                cost: <code>&euro;{trip.cost.toLocaleString('en-UK')} </code>	
                 </p>
+
+                
+                <ul>Events:
+                {
+                    trip.events.map(event =>
+                        <li key={event.id}>{event.title},  {event.startDate},  {event.endDate}</li>
+                        )
+                }
+                </ul>
+
+                
+               
 
                 <WeekCalendar   numberOfDays={7} 
                                 dayFormat={"ddd, DD.MM"}
                                 scaleUnit={20}
                                 cellHeight={30}
+                                eventComponent={()=>{1+1;}}
                                 />
             </main>
             <style jsx>

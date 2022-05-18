@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import 'react-week-calendar/dist/style.css';
 import { globalBody, mainPageBody } from './style';
-import TripCalendar from './components/TripCalendar';
 
 
 export default function Home() {

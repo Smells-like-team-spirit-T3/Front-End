@@ -2,12 +2,12 @@ module.exports = () => {
     const rewrites = () => {
       return [
         {
-          source: "/trips",
+          source: "/api/trips",
           destination: "https://tripcalendarapi.azurewebsites.net/api/trips",
         },
         {
-          source: "/trips/1",
-          destination: "https://tripcalendarapi.azurewebsites.net/api/trips/1",
+          source: "/api/trips/:id",
+          destination: "https://tripcalendarapi.azurewebsites.net/api/trips/:id",
         },
       ];
     };
