@@ -3,7 +3,9 @@ import 'react-week-calendar/dist/style.css';
 import { globalBody, mainPageBody } from './style';
 import TripCalendar from './components/TripCalendar';
 
+
 export default function Home() {
+
   return (
     <div className="container">
       <Head>
@@ -12,15 +14,8 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className="title">
-          Let's plan our trip!
-        </h1>
 
-        <p className="description">
-          This is the trip with code number <code>204539232</code>
-        </p>
-
-        <TripCalendar/>
+        <h1>Main Page - do something</h1>
 
       </main>
 
