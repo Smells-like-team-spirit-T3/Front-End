@@ -6,21 +6,37 @@ import { DialogContent } from '@material-ui/core';
 import { DialogContentText } from '@material-ui/core';
 import { DialogActions } from '@material-ui/core';
 import { Button } from '@material-ui/core';
-import { ReactDOM } from 'react';
 
-// import { Dialog } from 'react-native-simple-dialogs';
+import axios from 'axios';
+
+
 export default function CreateTrip() {
 
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [destination, setDestination] = useState('')
+    const [title, setTitle] = useState('Untitled Trip')
+    const [participants, setParticipants] = useState('')
+
 
     const [openDialog, setOpenDialog] = useState('')
 
 
-    const confirmNewTrip = (startDate, endDate, destination) => {
+    const confirmNewTrip = (startDate, endDate, destination, title, participants) => {
         setOpenDialog(false)
         console.log("API Calling...")
+        const newTrip = {
+            "title": {title},
+            "startdate": {startDate},
+            "enddate": endDate,
+            "cost": 0,
+            "amountparticipants": participants
+        }
+        axios.post('https://tripcalendarapi.azurewebsites.net/api/trips', newTrip)
+        .then(res => {
+            console.log(res);
+        })
+
     }
       
       const handleClose = () => {
@@ -33,7 +49,9 @@ export default function CreateTrip() {
         setOpenDialog(true)
     }
 
-    var notification = "Your trip to " + destination.toUpperCase() + " from " + startDate + " to " + endDate + ". \nDo you want to create new trip?"
+    var notification = "Your trip to " + destination.toUpperCase() + 
+    " from " + startDate + " to " + endDate +
+    " for " + participants + " people. \nDo you want to create new trip?"
 
     return (
         <div className='container'>
@@ -62,6 +80,12 @@ export default function CreateTrip() {
                         <option value="Basel">Basel</option>
                     </datalist>
 
+                    <label htmlFor="title">Trip Title</label>
+                    <input type="text" id="title" name="title" onChange={(e) => setTitle(e.target.value)}/>
+
+                    <label htmlFor="participants">Participants</label>
+                    <input type="number" pattern="[0-9]*" id="participants" name="participants" onChange={(e) => setParticipants(e.target.value)}/>
+                    
                     <input type="submit" value="Submit"/> 
                 </form>
 
