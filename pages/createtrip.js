@@ -1,29 +1,39 @@
 import { globalBody, mainPageBody } from './style';
 import { useState } from 'react';
+import { Dialog } from '@material-ui/core';
+import { DialogTitle } from '@material-ui/core';
+import { DialogContent } from '@material-ui/core';
+import { DialogContentText } from '@material-ui/core';
+import { DialogActions } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { ReactDOM } from 'react';
 
+// import { Dialog } from 'react-native-simple-dialogs';
 export default function CreateTrip() {
 
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [destination, setDestination] = useState('')
 
-    const handleConfirm = () => {
-        doStuff();
-        notify('Stuff is done.');
-        handleSubmit();
-        setOpen(false);
-    };
+    const [openDialog, setOpenDialog] = useState('')
+
+
+    const confirmNewTrip = (startDate, endDate, destination) => {
+        setOpenDialog(false)
+        console.log("API Calling...")
+    }
+      
+      const handleClose = () => {
+        setOpenDialog(false);
+      };
 
 
     const submitTrip = (e) =>{
         e.preventDefault()
-        console.log("SUBMIT...")
-        console.log(startDate)
-        console.log(endDate)
-        console.log(destination)
-        var notification = "Your trip to " + destination.toUpperCase() + " from " + startDate + " to " + endDate + ". \nDo you want to create new trip?"
-        alert(notification)
+        setOpenDialog(true)
     }
+
+    var notification = "Your trip to " + destination.toUpperCase() + " from " + startDate + " to " + endDate + ". \nDo you want to create new trip?"
 
     return (
         <div className='container'>
@@ -54,6 +64,25 @@ export default function CreateTrip() {
 
                     <input type="submit" value="Submit"/> 
                 </form>
+
+                <Dialog open={openDialog} onClose={handleClose}>
+                    <DialogTitle>
+                        New Trip Confirmation
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            {notification}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Back
+                        </Button>
+                        <Button onClick={confirmNewTrip} color="primary" autoFocus>
+                            Continue
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </main>
 
            
