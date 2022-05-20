@@ -1,9 +1,8 @@
-import { globalBody, mainPageBody } from './style';
+import './style.css'
 
-export default function CreateTrip() {
+export default function EnterCode() {
     return (
         <div className='container'>
-
             <main>
                 <h1 className="title">
                     Enter your code
@@ -11,7 +10,7 @@ export default function CreateTrip() {
                 <br/>
             
                 <form>
-                    <input type="number" id="edate" name="enddate" 
+                    <input type="text" id="code" name="code" 
                     style={{width: 400 + "px", margin: 10 + "px"}}
                     min="100000" max="999999"/>
 
@@ -23,13 +22,6 @@ export default function CreateTrip() {
                 Powered by{' '} Team Three
             </footer>
 
-            <style jsx>
-                {mainPageBody}
-            </style>
-
-            <style jsx global>
-                {globalBody}
-            </style>
         </div> 
     )
 }

@@ -1,4 +1,4 @@
-import { globalBody, mainPageBody } from './style';
+import './style.css'
 
 export default function CreateTrip() {
     return (
@@ -38,13 +38,6 @@ export default function CreateTrip() {
                 Powered by{' '} Team Three
             </footer>
 
-            <style jsx>
-                {mainPageBody}
-            </style>
-
-            <style jsx global>
-                {globalBody}
-            </style>
         </div> 
     )
 }
