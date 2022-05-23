@@ -6,7 +6,6 @@ import { DialogContent } from '@material-ui/core';
 import { DialogContentText } from '@material-ui/core';
 import { DialogActions } from '@material-ui/core';
 import { Button } from '@material-ui/core';
-
 import axios from 'axios';
 
 
@@ -19,24 +18,35 @@ export default function CreateTrip() {
     const [participants, setParticipants] = useState('')
 
 
-    const [openDialog, setOpenDialog] = useState('')
+    const [openDialog, setOpenDialog] = useState()
 
 
     const confirmNewTrip = (startDate, endDate, destination, title, participants) => {
-        setOpenDialog(false)
         // Call CREATE TRIP API
-        const newTrip = {
-            "title": {title},
-            "startdate": {startDate},
+        var newTrip = {
+            "title": title,
+            "startdate": startDate,
             "enddate": endDate,
             "cost": 0,
-            "amountparticipants": participants
+            "amountparticipants": Number(participants),
+            "event": []
         }
-        axios.post('https://tripcalendarapi.azurewebsites.net/api/trips', newTrip)
-        .then(res => {
-            console.log(res);
-        })
 
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        axios.post('https://tripcalendarapi.azurewebsites.net/api/trips', JSON.stringify(newTrip), config)
+        .then(function(response) {
+            console.log(response)
+        })
+        .catch(function(error) {
+            console.log(error)
+        });
+
+        // TODO: REDIRECT
     }
       
       const handleClose = () => {
@@ -92,7 +102,7 @@ export default function CreateTrip() {
 
                 <Dialog open={openDialog} onClose={handleClose}>
                     <DialogTitle>
-                        New Trip Confirmation
+                        {title} - Confirmation
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>
@@ -103,7 +113,7 @@ export default function CreateTrip() {
                         <Button onClick={handleClose} color="primary">
                             Back
                         </Button>
-                        <Button onClick={confirmNewTrip} color="primary" autoFocus>
+                        <Button onClick={() => confirmNewTrip(startDate, endDate, destination, title, participants)} color="primary" autoFocus>
                             Continue
                         </Button>
                     </DialogActions>
