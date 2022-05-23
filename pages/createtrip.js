@@ -24,7 +24,7 @@ export default function CreateTrip() {
 
     const confirmNewTrip = (startDate, endDate, destination, title, participants) => {
         setOpenDialog(false)
-        console.log("API Calling...")
+        // Call CREATE TRIP API
         const newTrip = {
             "title": {title},
             "startdate": {startDate},
@@ -46,6 +46,7 @@ export default function CreateTrip() {
 
     const submitTrip = (e) =>{
         e.preventDefault()
+        // Open Confirmation Dialog
         setOpenDialog(true)
     }
 
