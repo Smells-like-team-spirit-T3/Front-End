@@ -4,53 +4,38 @@ import "./CalendarStyles.css";
 
 const styles = {
   wrap: {
-    display: "flex"
+    display: "flex",
+    margin: "40px",
+    marginTop: "10px"
   },
   left: {
-    marginRight: "10px"
+    marginRight: "20px"
   },
   main: {
-    flexGrow: "1"
+    flexGrow: "1",
   }
 };
-
-
-const events = [
-  {
-    id: 1,
-    text: "Event 1",
-    start: "2001-11-19T10:30:00",
-    end: "2001-11-19T13:00:00"
-  },
-  {
-    id: 2,
-    text: "Event 2",
-    start: "2001-11-20T09:30:00",
-    end: "2001-11-20T11:30:00",
-    backColor: "#6aa84f"
-  },
-  {
-    id: 3,
-    text: "Event 3",
-    start: "2001-11-21T12:00:00",
-    end: "2001-11-21T15:00:00",
-    backColor: "#f1c232"
-  },
-  {
-    id: 4,
-    text: "Event 4",
-    start: "2001-11-22T11:30:00",
-    end: "2001-11-22T14:30:00",
-    backColor: "#cc4125"
-  },
-];
 
 class Calendar extends Component {
   
   constructor(props) {
     super(props);
+
+    const tripEvents = [];
+    this.props.trip.events.forEach(event => {
+      tripEvents["push"]({
+        start: event.startDate, // "2022-05-27T12:00:00",
+        end: event.endDate, // "2022-05-27T13:00:00",
+        id: event.id,
+        text: event.title // backColor
+      });
+    })
+    
+    console.log(tripEvents);
+
     this.state = {
-      startDate: this.props.trip.startDate
+      startDate: this.props.trip.startDate,
+      tripEvents: tripEvents
     };
   }
 
@@ -62,8 +47,8 @@ class Calendar extends Component {
             selectMode={"week"}
             showMonths={2}
             skipMonths={3}
-            startDate={this.props.trip.startDate}
             selectionDate={this.props.trip.startDate}
+            startDate={this.props.trip.startDate}
             onTimeRangeSelected={ args => {
               this.setState({
                 startDate: args.day
@@ -71,12 +56,15 @@ class Calendar extends Component {
             }}
           />
         </div>
+
+
+
         <div style={styles.main}>
         <DayPilotCalendar
           viewType={"Week"}
           durationBarVisible={false}
           startDate={this.state.startDate}
-          events={events}
+          events={this.state.tripEvents}
           ref={component => {
             this.calendar = component && component.control;
           }}

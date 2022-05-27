@@ -20,7 +20,7 @@ export default function TripCalendar() {
         fetchData();
     }, []);
 
-    console.log(trip);
+    // console.log(trip);
 
     if (isLoading) {
         return (
