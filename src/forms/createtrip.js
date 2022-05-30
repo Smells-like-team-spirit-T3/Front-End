@@ -7,7 +7,7 @@ import { DialogContentText } from '@material-ui/core';
 import { DialogActions } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
-
+import './style.css'
 
 export default function CreateTrip() {
 
@@ -126,13 +126,6 @@ export default function CreateTrip() {
                 Powered by{' '} Team Three
             </footer>
 
-            <style jsx>
-                {mainPageBody}
-            </style>
-
-            <style jsx global>
-                {globalBody}
-            </style>
         </div> 
     )
 }
