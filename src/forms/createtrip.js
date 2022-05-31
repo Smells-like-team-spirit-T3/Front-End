@@ -1,4 +1,4 @@
-import { globalBody, mainPageBody } from './style';
+// import { globalBody, mainPageBody } from './style';
 import { useState } from 'react';
 import { Dialog } from '@material-ui/core';
 import { DialogTitle } from '@material-ui/core';
@@ -7,7 +7,7 @@ import { DialogContentText } from '@material-ui/core';
 import { DialogActions } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
-import './style.css'
+// import './style.css'
 
 export default function CreateTrip() {
 
