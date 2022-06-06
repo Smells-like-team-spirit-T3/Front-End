@@ -14,6 +14,7 @@ export default function TripCalendar() {
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios.get(baseUrl + "/" + String(id),);
+            // console.log(result);
             setTrip(result.data);
             setLoading(false);
         };
@@ -47,7 +48,7 @@ export default function TripCalendar() {
         This is the <code>{trip.title}</code> trip with code number <code>{id}</code>.
         </p>
 
-        <Calendar trip={trip}/>
+        <Calendar trip={trip} id={id}/>
 
         </main>
         <footer>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { DayPilot, DayPilotCalendar, DayPilotNavigator} from "@daypilot/daypilot-lite-react";
 import "./CalendarStyles.css";
+import axios from 'axios';
 
 const styles = {
   wrap: {
@@ -22,16 +23,22 @@ class Calendar extends Component {
     super(props);
 
     const tripEvents = [];
+    const colors = [
+      "#6aa84f",
+      "#f1c232",
+      "#cc4125",
+      "#3abc8c"
+    ];
+
     this.props.trip.events.forEach(event => {
-      tripEvents["push"]({
+      tripEvents.push({
         start: event.startDate, // "2022-05-27T12:00:00",
         end: event.endDate, // "2022-05-27T13:00:00",
         id: event.id,
-        text: event.title // backColor
+        text: event.title, 
+        backColor: colors[Math.floor(Math.random() * colors.length)]
       });
     })
-    
-    console.log(tripEvents);
 
     this.state = {
       startDate: this.props.trip.startDate,
@@ -55,9 +62,50 @@ class Calendar extends Component {
               });
             }}
           />
+          <button 
+               type="button" 
+               className="btn-save-events" 
+               onClick={ async () => {
+
+                // newEvents = current events in memory
+                const dp = this.calendar;
+                dp.clearSelection();
+                const newEvents = [];
+                dp.events.list.forEach(async event => {
+                  await newEvents.push({
+                    title: event.text,
+                    startDate: event.start.value,
+                    endDate: event.end.value
+                  });
+                })
+                
+                const baseUrl = 'https://tripcalendarapi.azurewebsites.net/api/';
+
+                // DELETE all events in db
+                this.props.trip.events.forEach(async event => {
+                  const res = await axios.delete(baseUrl + "events/" + String(event.id),);
+                  console.log(res);
+                });
+                
+                // POST all events in db
+                console.log(newEvents);
+                newEvents.forEach(async event => {
+                  const res = await axios.post(baseUrl + "events?id=" + String(this.props.id), event);
+                  console.log(res);
+                });
+
+                window.location.reload();
+
+               }}>
+               Save
+          </button>
+          <button 
+               type="button" 
+               className="btn-cancel-save-events" 
+               onClick={() => window.location.reload()}>
+               Cancel
+          </button>
         </div>
-
-
 
         <div style={styles.main}>
         <DayPilotCalendar

@@ -21,7 +21,7 @@ body {
 }
 
 main {
-    padding: 5rem 0;
+    padding: 3rem 0;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -76,7 +76,7 @@ a {
 }
 
 .description {
-    line-height: 1.5;
+    line-height: 1;
     font-size: 1.5rem;
 }
 
@@ -143,7 +143,7 @@ code {
 
 /* Form */
 
-input[type=date], input[type=number], select, input[type=text]{
+input[type=date], input[type=number], select, input[type=text] {
     width: 100%; /* Full width */
     padding: 12px; /* Some padding */ 
     border: 1px solid #ccc; /* Gray border */
@@ -160,7 +160,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
   
   /* Style the submit button with a specific background color etc */
-input[type=submit] {
+input[type=submit], .btn-submit {
     background-color: #04AA6D;
     color: white;
     padding: 12px 20px;

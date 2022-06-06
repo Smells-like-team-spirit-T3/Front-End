@@ -28,7 +28,7 @@ export default function CreateTrip() {
                         <option value="Basel">Basel</option>
                     </datalist>
 
-                    <input type="submit" value="Submit"/>
+                    <input className="btn-submit" type="submit" value="Submit"/>
                 </form>
             </main>
 

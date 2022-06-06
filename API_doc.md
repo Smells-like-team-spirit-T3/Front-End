@@ -21,6 +21,7 @@ Json:
 	"events" : []
 }
 /////////////////////////////////////////////////////////////////////////////////////
+
 Edit a trip:
 PUT
 https://tripcalendarapi.azurewebsites.net/api/trips
@@ -35,14 +36,17 @@ Json:
 	"events" : []
 }
 /////////////////////////////////////////////////////////////////////////////////////
+
 Get events by trip id:
 GET
 https://tripcalendarapi.azurewebsites.net/api/events/trip?id={}
 /////////////////////////////////////////////////////////////////////////////////////
+
 Get an event by its id:
 GET
 https://tripcalendarapi.azurewebsites.net/api/events/{id}
 /////////////////////////////////////////////////////////////////////////////////////
+
 Add an event to a trip:
 POST
 https://tripcalendarapi.azurewebsites.net/api/events?id={}
@@ -58,6 +62,7 @@ Json:
 	"description" : "description-3"
 }
 /////////////////////////////////////////////////////////////////////////////////////
+
 Edit an event:
 PUT
 https://tripcalendarapi.azurewebsites.net/api/events
@@ -72,3 +77,38 @@ Json:
 	"duration" : 2,
 	"description" : "description-3"
 }
+
+Edit many events:
+PUT
+https://tripcalendarapi.azurewebsites.net/api/events/list
+Request/Return Json:
+[
+	{
+		"id":1,
+	 	"title":"newTitleEvent1",
+	 	"type":"newTypeEvent1",
+	 	"startDate":"2001-11-21T00:00:00",
+	 	"endDate":"2001-11-25T00:00:00",
+	 	"cost":322.00,
+	 	"duration":5,
+	 	"description":"newDescriprion1"
+	},
+	{
+		"id":2,
+		"title":"newTitleEvent2",
+	 	"type":"newTypeEvent2",
+	 	"startDate":"2001-11-21T00:00:00",
+	 	"endDate":"2001-11-25T00:00:00",
+	 	"cost":666.00,
+	 	"duration":1,
+	 	"description":"newDescriprion2"
+	}
+]
+/////////////////////////////////////////////////////////////////////////////////////
+Delete an event:
+DELETE
+https://tripcalendarapi.azurewebsites.net/api/events/{id}
+
+Delete a trip:
+DELETE
+https://tripcalendarapi.azurewebsites.net/api/trips/{id}
