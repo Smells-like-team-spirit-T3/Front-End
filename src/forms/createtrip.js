@@ -6,7 +6,8 @@ import { DialogContentText } from '@material-ui/core';
 import { DialogActions } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
-import './style.css'
+import './style.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateTrip() {
 
@@ -39,10 +40,14 @@ export default function CreateTrip() {
 
         axios.post('https://tripcalendarapi.azurewebsites.net/api/trips', JSON.stringify(newTrip), config)
         .then(function(response) {
-            console.log(response)
+            const newId = response.data.id;
+            // const navigate = useNavigate();
+            window.location.href = `/trip/${newId}`;
+            console.log(response);
         })
         .catch(function(error) {
-            console.log(error)
+            console.log(error);
+            window.location.reload();
         });
 
         // TODO: REDIRECT
