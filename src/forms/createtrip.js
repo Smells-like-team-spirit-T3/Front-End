@@ -18,7 +18,7 @@ export default function CreateTrip() {
     const [participants, setParticipants] = useState('')
 
 
-    const [openDialog, setOpenDialog] = useState()
+    const [openDialog, setOpenDialog] = useState(true)
 
 
     const confirmNewTrip = (startDate, endDate, destination, title, participants) => {
@@ -50,7 +50,9 @@ export default function CreateTrip() {
             window.location.reload();
         });
 
-        // TODO: REDIRECT
+        return "Your trip to " + destination.toUpperCase() + 
+        " from " + startDate + " to " + endDate +
+        " for " + participants + " people. \nDo you want to create new trip?";
     }
       
       const handleClose = () => {
