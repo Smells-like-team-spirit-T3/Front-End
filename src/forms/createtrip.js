@@ -9,6 +9,10 @@ import axios from 'axios';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 
+function fakeSubmit() {
+    print("submit...");
+}
+
 export default function CreateTrip() {
 
     const [startDate, setStartDate] = useState('')
@@ -55,12 +59,13 @@ export default function CreateTrip() {
         " for " + participants + " people. \nDo you want to create new trip?";
     }
       
-      const handleClose = () => {
-        setOpenDialog(false);
-      };
+    const handleClose = () => {
+    setOpenDialog(false);
+    };
 
 
     const submitTrip = (e) =>{
+        fakeSubmit();
         e.preventDefault()
         // Open Confirmation Dialog
         setOpenDialog(true)
